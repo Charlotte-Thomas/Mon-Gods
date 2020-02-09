@@ -37,14 +37,10 @@ const CountrySearch = () => {
     setCountryFilter(e.target.value)
     // check each time something is entered into the the search field
     toggleVisibility(e.target.value)
-    // console.log('is hidden 22222', isHidden)
-    // console.log('countryFilter 2222222on', countryFilter)
   }
 
   // if countryFilter state is empty setHidden as true
   const toggleVisibility = (val) => val ? setHidden(false) : setHidden(true)
-
-  // console.log('ALL DATA', data)
 
   return (
     <Element name="test1"  className="element">

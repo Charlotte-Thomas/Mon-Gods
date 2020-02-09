@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import ReactMapGL, { Marker, Popup, GeolocateControl } from 'react-map-gl'
+import ReactMapGL, { Marker, Popup, GeolocateControl, FlyToInterpolator, LinearInterpolator } from 'react-map-gl'
+
 const initialViewport = {
   width: 500,
   height: 500,
@@ -15,15 +16,10 @@ const MiniSurfMap = ({ lat, lon }) => {
   const [spotdata, setSpotdata] = useState([])
   const [viewport, setViewport] = useState(initialViewport)
   const [error, setError] = useState(errorInitialState)
-  // console.log('asJDKAHJAKSCHKJ LONG', lon)
-  // console.log('HsdasdaHJAKSCHKJ LATT', lat)
+
+
   useEffect(() => {
-    console.log('LONG', lon)
-    console.log('-------------LATT', lat)
     spotLongLat(lat, lon)
-    console.log('-----------HSAIDHIASHDIAHSssdadsadasJDKAHJAKSCHKJ LONG', lon)
-    console.log('-------------HSAIDHIASHDIAHSJDKAasdasdasdaHJAKSCHKJ LATT', lat)
-    console.log('..veiew', viewport)
   }, [lat, lon])
   
   ///------------------------------------------------///
@@ -35,7 +31,9 @@ const MiniSurfMap = ({ lat, lon }) => {
       height: 300,
       latitude: parseInt(lat),
       longitude: parseInt(lon),
-      zoom: 1
+      zoom: 10,
+      transitionDuration: 3000,
+      transitionInterpolator: new FlyToInterpolator()
     })
   }
   // spotLongLat()
@@ -60,4 +58,5 @@ const MiniSurfMap = ({ lat, lon }) => {
     </React.Fragment>
   )
 }
+
 export default MiniSurfMap
