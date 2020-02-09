@@ -9,13 +9,14 @@ import Comments from './CommentSection'
 
 const SingleSpot = (props) => {
 
+  window.scrollTo(0,0)
+
   const [data, setData] = useState([])
   const [rating, setRate] = useState(0)
   const [nums, setNum] = useState([])
   const [people, setPeople] = useState(0)
   const [error, setError] = useState('')
   const [text, setText] = useState('Delete spot')
-  // const [forecastData, setForecastData] = useState([])
   const [name, setName] = useState('')
 
   useEffect(() => {
@@ -23,9 +24,6 @@ const SingleSpot = (props) => {
       .then(resp => resp.json())
       .then(resp =>
         setData(resp)
-
-        //run function to pass data down to child component
-        // gop to child run the function 
       )
       .then(createRating())
       .then(axios.get('/api/profile', {
@@ -35,8 +33,6 @@ const SingleSpot = (props) => {
           setName(resp.data.username)
         }))
     // .then(getForecast())
-    // console.log('TESSSSSSSTYYYYYYYYYY', data.long)
-    // console.log('lat', lat)
     return () => console.log('Unmounting component')
   }, [rating])
   // should run twice after first loading the spot
@@ -57,7 +53,6 @@ const SingleSpot = (props) => {
     fetch(`/api/spots/${props.match.params.id}`)
       .then(resp => resp.json())
       .then(resp => {
-        // console.log(resp.spot.country)
         response = resp
         setPeople(resp.rating.length)
         return resp.rating.forEach(e => {
@@ -159,8 +154,6 @@ const SingleSpot = (props) => {
   }
 
   function submitRating(num) {
-    // console.log(rating)
-    // console.log('submitted')
     axios.post(`/api/spots/${props.match.params.id}/rate`, { rate: num }, {
       headers: { Authorization: `Bearer ${Auth.getToken()}` }
     })
@@ -186,7 +179,7 @@ const SingleSpot = (props) => {
 
 
   function addFavourite() {
-    // this is a PUT request as I am adding the spot ID to the user "favourites" array - however this could be made into a PUT request instead
+    // this is a POST request as I am adding the spot ID to the user "favourites" array - however this could be made into a PUT request instead
     axios.post(`/api/spots/${props.match.params.id}/favourite`, {}, {
       headers: { Authorization: `Bearer ${Auth.getToken()}` }
     })
@@ -255,7 +248,7 @@ const SingleSpot = (props) => {
           <div id='rating-box'>
             <div id='current-rating'>
               <div>Rating: {((checkRating()) * 5).toFixed(2)} stars
-            {/* {checkRating()} / {(checkRating() * 100).toFixed(2)}% */}
+                {/* {checkRating()} / {(checkRating() * 100).toFixed(2)}% */}
                 {/* <br />
                 {people} rating */}
               </div>
@@ -321,7 +314,7 @@ const SingleSpot = (props) => {
                 <>
                   <Link className="button is-info" to={`/edit/${props.match.params.id}`}>
                     Edit Spot
-            </Link>
+                  </Link>
                 </>
               }
             </div>
