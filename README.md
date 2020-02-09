@@ -2,6 +2,8 @@
 
 by Charlotte Thomas, Awal Yusuf, Cuong Tran and [Abi James](https://github.com/ajames14)
 
+[Link to final project](https://git.heroku.com/project-3-swell.git)
+
 ## Overview
 
 For our third project on the General Assembly Software Engineering bootcamp, we were tasked with building a full-stack application, using our own front-end and back-end. This was a group project and we had 7 days to deliver our application. 
