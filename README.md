@@ -204,7 +204,7 @@ Additionally, admin have additional privileges, such as:
 1. The ability to approve of new surf spots created by users.
 2. Edit and delete any surf spot.
 
-<div class="approval">
+<div class="approval" style="display: flex; justify-content: flex-start;">
   <img width="370px" height="470px" src="https://i.imgur.com/F8BhXPB.png">
   <img width="500px" height="300px" style="margin: 0, 5px;" src="https://media.giphy.com/media/j6rMV9plIyzxV2mmzd/giphy.gif">
   <img width="370px" height="470px" src="https://i.imgur.com/kZcX5zf.png">
