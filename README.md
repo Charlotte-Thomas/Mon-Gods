@@ -1,10 +1,13 @@
-# Project 3: A MERN Stack App
+# Project-3: A MERN Stack App
 
-by Charlotte Thomas, Awal Yusuf, Cuong Tran and [Abi James](https://github.com/ajames14)
+### ![](https://cloud.githubusercontent.com/assets/40461/8183776/469f976e-1432-11e5-8199-6ac91363302b.png) General Assembly, Software Engineering Immersive
+
 
 ## Overview
 
 For our third project on the General Assembly Software Engineering bootcamp, we were tasked with building a full-stack application, using our own front-end and back-end. This was a group project and we had 7 days to deliver our application. 
+
+By Charlotte Thomas, [Awal Yusuf](https://github.com/awalyusuf), [Cuong  Tran](https://github.com/cmtran09) and [Abi James](https://github.com/ajames14).
 
 ### The Final Product 
 
@@ -14,7 +17,7 @@ Swell gives users the ability to:
  
 - Search for surf destinations around the world, filtering by country, difficulty, user rating or by selecting pins on a world map.
 - Find out essential information on each surf spot, such as location, a description, the type of wave, difficulty, the weather and surf conditions and the average user rating. Each surf spot also has a comments section where registered users can leave comments and advice for other surfers. 
-- Create a profile. Once a user had registered, they can add surf spots to their favourites list, comment on surf destinations, and even upload new surf spots to the database (with approval - see below). They can view their favourites and pending uploads via their profile page, where they can also upload or change their profile picture. 
+- Create a profile. Once a user has registered, they can add surf spots to their favourites list, comment on surf destinations, and even upload new surf spots to the database (with approval - see below). They can view their favourites and pending uploads via their profile page, where they can also upload or change their profile picture. 
 - Lastly, a registered user can upload a surf spot to share with other surfers, however, to control the quality of these, the administators of the site (us!) have to approve these before they are added to the database and displayed. We can see these when we login as the admin, and have a button to approve. 
 
 
@@ -23,11 +26,11 @@ Swell gives users the ability to:
 The project brief:
 
 - Work in a team, using git to code collaboratively.
-- Build a full-stack application by making your own backend and your own front-end
-- Use an Express API to serve your data from a Mongo database
-- Consume your API with a separate front-end built with React
-- Be a complete product which most likely means multiple relationships and CRUD functionality for at least a couple of models
-- Implement thoughtful user stories/wireframes that are significant enough to help you know which features are core MVP and which you can cut
+- Build a full-stack application by making your own backend and your own front-end.
+- Use an Express API to serve your data from a Mongo database.
+- Consume your API with a separate front-end built with React.
+- Be a complete product which most likely means multiple relationships and CRUD functionality for at least a couple of models.
+- Implement thoughtful user stories/wireframes that are significant enough to help you know which features are core MVP and which you can cut.
 - Have a visually impressive design.
 - Be deployed online so it's publicly accessible.
 
@@ -35,8 +38,9 @@ The project brief:
 
 **Front End**: 
 
-- React.js
+- HTML5
 - SCSS
+- React.js
 - Axios
 - Bulma
 - ReactRouter
@@ -86,7 +90,17 @@ userSchema
 
 ### The Front-End
 
-For the front-end, we split the functionality logic amongst oursevlves, each choosing different components to work on. Despite splitting the work, we still helped each other whenever a team member needed a fresh perspective or was struggling on a piece of logic. It was a combination of solo, group and pair programming.
+For the front-end, we split the functionality logic amongst ourselves, each choosing different components to work on. Despite splitting the work, we still helped each other whenever a team member needed a fresh perspective or was struggling on a piece of logic. It was a combination of solo, group and paired programming.
+
+I was responsible for creating the:
+
+1. Profile page
+2. Ratings funtionality
+3. Admin privileges
+4. Edit & delete requests
+5. Card design
+6. Favourite functionality 
+7. Error message logic
 
 #### Components: 
 
@@ -104,13 +118,11 @@ Here we used MapBox for the maps and Lazy Hero for the hero styling.
 
 Once the user has clicked on a country they are interested in, the country page provides an overview of the spots in the country and allows the user to filter by level, user rating and provides a general search bar.
 
-![Country Page](/frontend/src/images/readme-images/Country-page.png)
-
-![Country Page 2](/frontend/src/images/readme-images/Country-page-2.png)
+![Country Page](https://i.imgur.com/54wlnCy.png)
 
 **Single Surf Spot Page**
 
-Each surfing destination has its own page were we pull key information from our seed data to display on the page. In order to do this, we made use of React Hooks, fetching the data to be rendered using 'use effect': 
+Each surfing destination has its own page where we pull key information from our seed data to display on the page. In order to do this, we made use of React Hooks, fetching the data to be rendered using 'use effect': 
 
 ```
  useEffect(() => {
@@ -132,36 +144,81 @@ Each surfing destination has its own page were we pull key information from our 
 
 We display a mini surf map which we created as a component in our app and embedded it to be rendered  into our single page. The map takes in a longitude and latitude which was seeded in our data in order to display the markers on our map. 
 
-Another component displayed is our weather forecast chart which also takes in a longittude and latitude from our seeded data. We use the stormglass API for our chart and chose a single source for our data. We use hooks in our components so we can pass a long and lat when rendering in our single page. 
+Another component displayed is our weather forecast chart which also takes in a longitude and latitude from our seeded data. We use the stormglass API for our chart and chose a single source for our data. We use hooks in our components so we can pass a long and lat when rendering in our single page. 
 
-This page also included the comments section were registered users can post comments and delete their own previous comments. A user also rates the spot here, and can see the average user rating displayed by the wave images. 
+This page also included the comments section where registered users can post comments and delete their own previous comments. A user also rates the spot here, and can see the average user rating displayed by the wave images. 
 
->>> INSERT SCREENSHOTS
+For ratings, an average is calculated from the ratings that are related to that particular spot. This average is then turned into a percentage of 5. Through a sequence of futher functions, the width of each wave image (that represents the rating) is found and rendered. 
+
+I decided to not round to the nearest rate, but instead to find the exact width that related to the average rating given by the users, to the nearest two decimal places. This gives a more accurate display to other users of the average rating of that spot.
+
+First a function specifies which waves need either 100% or 0% width. The second function then specifies the percent of the width which the variable image has (shown below). Here, waveList is an array of all the five images.
+
+	  const waveCheck = (w) => {
+	    const newRating = rating.toFixed(2)
+	    if (newRating.toString()[3] !== '0') {
+	      if (newRating.toString()[2] === '2' || newRating.toString()[2] === '4' || newRating.toString()[2] === '6' || newRating.toString()[2] === '8') {
+	        console.log(parseInt(newRating.toString()[3]) * 5 + '%')
+	        waveList[waveList.length - w].style.width = parseInt(newRating.toString()[3]) * 5 + '%'
+	      } else {
+	        waveList[waveList.length - w].style.width = (parseInt(rating.toString()[3]) + 10) / 20 * 100 + '%'
+	      }
+	    } else if (newRating.toString()[2] !== '0') {
+	      if (newRating === '0.20' || newRating === '0.40' || newRating === '0.60' || newRating === '0.80') {
+	        waveList[waveList.length - w].style.width = '100%'
+	      } else {
+	        waveList[waveList.length - w].style.width = '50%'
+	      }
+	    } else {
+	      waveList[waveList.length - w].style.width = newRating.toString()[0] * 100 + '%'
+	    }
+	  }
+	  
+Here the rating was **0.73** (w = 2):
+
+![](https://i.imgur.com/AALh45S.png)
+
+
+
 
 **Share A Spot**
 
-Here, registered users are allowed to upload a new surfing spot they might have discovered and not yet on our website. This helps increase the number of destinations on our website and make users feel part of the building process of the website. 
+Here, registered users are allowed to upload a new surfing spot they might have discovered and is not yet on our website. This helps increase the number of destinations on our website and make users feel part of the building process of the website. 
+
+Once a new spot is submitted, it first has to be approved by an admin in order for it to be published on the website for other users to view.
 
 
-![Upload-spot](/frontend/src/images/readme-images/Upload-spot.png)
+![Upload-spot](https://i.imgur.com/PXlI95R.png)
 
 
 **Profile Page**
 
-We also have a profile page were users can upload a photo, see all their favorite surfing spots and view surf spots they have created, and those still pending approval.
+We also have a profile page where users can upload a photo, see all their favourite surfing spots, view surf spots they have created, and those still pending approval.
 
-![Profile-1](/frontend/src/images/readme-images/Profile-1.png)
-![Profile-2](/frontend/src/images/readme-images/Profile-2.png)
+![Profile-1](https://i.imgur.com/HYieyOa.png)
+
+Additionally, admin have additional privileges, such as:
+
+1. The ability to approve of new surf spots created by users.
+2. Edit and delete any surf spot.
+
+<div class="approval" align="center">
+  <img width="30%" height="30%" src="https://i.imgur.com/F8BhXPB.png">
+  <img width="30%" style="margin-bottom:5%;" src="https://media.giphy.com/media/j6rMV9plIyzxV2mmzd/giphy.gif">
+  <img width="30%" height="30%" src="https://i.imgur.com/kZcX5zf.png">
+</div>
+
+
 
 **Bugs**
 
-- .....
+- Mobile compatibility: some feautures to be tweaked to be made mobile friendly.
+- Photo uploads: currenty the front-end registration form requires a user to provide a photo when they sign up. This is not required on the back end and from a UX point of view should not be the case.
 
 
 ## Challenges
 
 - Mapbox: Working with mapbox posed a bit of a challenge due to data conversation. Mapbox is data strict and fetching our data from our api required a lot of refactoring in order to suit the data format especially for the longtitude and lattitude. Next time, we would rather use a GeoJson file and insert our data into it than fetching directly from our API. 
-- ... ADD MORE
 
 ## Wins
 
@@ -175,7 +232,10 @@ We also have a profile page were users can upload a photo, see all their favorit
 We were happy with the overall funcionality of our website, however, there were a few things that we would have added. In particular:
 
 - When a user adds a new spot, provide functionality so that they can upload a beach/spot name to identify the location, rather than te longitude and latitude (as this is a bit cumbersome or users). 
+- Mobile design.
+- Improve the visual design and functionality of the map feature.
 - We would have expanded the seed database to include more spots around the world. 
+- Add the ability for users to edit the spots they've created, where the edits must also be approved by admin before updating the spot on the site.
 
 
 
