@@ -3,7 +3,6 @@ const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
 const { dbURI, port } = require('./config/environment')
 const router = require('./router')
-
 const path = require('path')
 const dist = path.join(__dirname, 'dist')
 
@@ -27,10 +26,9 @@ app.use('/api', router)
 
 app.use('/', express.static(dist))
 
-
 app.get('*', function(req, res) {
   res.sendFile(path.join(dist, 'index.html'))
-})
+});
 
 // Listen on our port!
 app.listen(port, () => console.log(`We are good to go on port ${port}`))

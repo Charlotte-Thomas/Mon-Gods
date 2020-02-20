@@ -3,6 +3,8 @@
 ### ![](https://cloud.githubusercontent.com/assets/40461/8183776/469f976e-1432-11e5-8199-6ac91363302b.png) General Assembly, Software Engineering Immersive
 
 
+[Link to final project](https://git.heroku.com/project-3-swell.git)
+
 ## Overview
 
 For our third project on the General Assembly Software Engineering bootcamp, we were tasked with building a full-stack application, using our own front-end and back-end. This was a group project and we had 7 days to deliver our application. 
