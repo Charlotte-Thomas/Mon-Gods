@@ -205,7 +205,7 @@ Additionally, admin have additional privileges, such as:
 2. Edit and delete any surf spot.
 
 <div class="approval" style="display: flex; justify-content: flex-start;">
-  <img width="370px" height="440px" src="https://i.imgur.com/F8BhXPB.png">
+  <img width="370px" align="left" height="440px" src="https://i.imgur.com/F8BhXPB.png">
   <img width="300px" height="200px" style="margin: 0, 5px;" src="https://media.giphy.com/media/j6rMV9plIyzxV2mmzd/giphy.gif">
   <img width="370px" height="440px" src="https://i.imgur.com/kZcX5zf.png">
 </div>
