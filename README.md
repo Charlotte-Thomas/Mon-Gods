@@ -1,4 +1,4 @@
-# Project-3: A MERN Stack App
+# Project-3: Swell - A MERN Stack App
 
 ### ![](https://cloud.githubusercontent.com/assets/40461/8183776/469f976e-1432-11e5-8199-6ac91363302b.png) General Assembly, Software Engineering Immersive
 
@@ -13,7 +13,7 @@ By Charlotte Thomas, [Awal Yusuf](https://github.com/awalyusuf), [Cuong  Tran](h
 
 ### The Final Product 
 
-We decided to create a surfing website, "Swell", focused on providing information and advice on the best places to surf globally. We wanted to create a "tripadvisor" for surfing and make our website a social network, as well as informational. 
+We decided to create a surfing website, "Swell", focused on providing information and advice on the best places to surf globally. We wanted to create a "TripAdvisor" for surfing and make our website a social network, as well as informational. 
 
 Swell gives users the ability to:
  
@@ -104,7 +104,6 @@ I was responsible for creating the:
 6. Favourite functionality 
 7. Error message logic
 
-#### Components: 
 
 **Homepage**
 
@@ -199,7 +198,7 @@ We also have a profile page where users can upload a photo, see all their favour
 
 ![Profile-1](https://i.imgur.com/HYieyOa.png)
 
-Additionally, admin have additional privileges, such as:
+Admin have additional privileges, such as:
 
 1. The ability to approve of new surf spots created by users.
 2. Edit and delete any surf spot.
@@ -221,7 +220,7 @@ Additionally, admin have additional privileges, such as:
 
 ## Challenges
 
-- Mapbox: Working with mapbox posed a bit of a challenge due to data conversation. Mapbox is data strict and fetching our data from our api required a lot of refactoring in order to suit the data format especially for the longtitude and lattitude. Next time, we would rather use a GeoJson file and insert our data into it than fetching directly from our API. 
+- Mapbox: Working with mapbox posed a bit of a challenge due to data conversation. Mapbox is data strict and fetching our data from our api required a lot of refactoring in order to suit the data format especially for the longtitude and lattitude. Next time, we would rather use a GeoJson file and insert our data into it rather than fetching directly from our API. 
 
 ## Wins
 
@@ -234,7 +233,7 @@ Additionally, admin have additional privileges, such as:
 
 We were happy with the overall funcionality of our website, however, there were a few things that we would have added. In particular:
 
-- When a user adds a new spot, provide functionality so that they can upload a beach/spot name to identify the location, rather than te longitude and latitude (as this is a bit cumbersome or users). 
+- When a user adds a new spot, provide functionality so that they can upload a beach/spot name to identify the location, rather than the longitude and latitude (as this is a bit cumbersome for users). 
 - Mobile design.
 - Improve the visual design and functionality of the map feature.
 - We would have expanded the seed database to include more spots around the world. 
